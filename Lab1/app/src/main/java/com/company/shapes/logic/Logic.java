@@ -160,4 +160,46 @@ public class Logic
     }
 
     // TODO -- add your code here
+public static double boxVolume(double length, double width, double depth) {
+        return length * width * depth;
+    }
+    public static double rectangleArea(double length, double width){
+        return length * width;
+    }
+
+    public static double rectanglePerimeter(double length, double width){
+        return 2 * (length + width);
+    }
+
+    public static double circleArea(double radius){
+        return Math.PI * (radius * radius);
+    }
+
+    public static double circleCircumference(double radius){
+        return Math.PI * 2*radius;
+    }
+
+    public static double rightTriangleArea(double base, double height){
+        return (base * height) / 2;
+    }
+
+    public static double rightTrianglePerimeter(double base, double height){
+        double hypotenuse = Math.sqrt(base * base + height * height);
+        double perimeter = base + height + hypotenuse;
+        return perimeter;
+    }
+
+    public static double boxSurfaceArea(double length, double width, double depth){
+        return 2 * (width * length + width * depth + depth * length);
+    }
+
+    public static double sphereVolume(double radius){
+        return ((4.0 / 3.0) * Math.PI * (radius * radius * radius));
+    }
+
+    public static double sphereSurfaceArea(double radius){
+        return 4 * Math.PI * (radius * radius);
+    }
+
+}
 
