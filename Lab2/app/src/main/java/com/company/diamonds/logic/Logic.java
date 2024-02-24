@@ -46,7 +46,127 @@ public class Logic
     public void process(int size) {
 
         // TODO -- add your code here
+        
+        int height_count = 0;
+        int size_count = size + 1;
 
+        // Цикл по строкам ромба
+        for (int height = 0; height < size * 2 + 1; height++) {
+            // Цикл по столбцам ромба
+            for (int width = 0; width < size * 2 + 2; width++) {
+                // Проверка, является ли текущая позиция углом ромба
+                if ((height == 0 || height == size * 2) && (width == 0 || width == size * 2 + 1)) {
+                    mOut.print('+');
+                }
+
+                // Проверка, является ли текущая позиция вертикальной стороной ромба
+                else if ((height != 0 || height != size * 2) && (width == 0 || width == size * 2 + 1)) {
+                    mOut.print('|');
+                }
+
+                // Проверка, является ли текущая позиция горизонтальной стороной ромба
+                else if ((height == 0 || height == size * 2) && (width != 0 || width != size * 2 + 1)) {
+                    mOut.print('-');
+                }
+
+                // Проверка, является ли текущая позиция внутренней частью ромба
+                else if ((height != 0 || height != size * 2) && (width != 0 || width != size * 2 + 1)) {
+                    // Проверка, является ли текущая позиция серединой ромба
+                    if (height == Math.ceil((size * 2 + 1) / 2)) {
+                        if (width == 1) {
+                            mOut.print('<'); // Вставка '<' в начало середины
+                        } else if (width == size * 2) {
+                            mOut.print('>'); // Вставка '>' в конец середины
+                        } else {
+                            if (height % 2 == 0) {
+                                mOut.print('-'); // Вывод '-' для четных позиций высоты в середине
+                            } else {
+                                mOut.print('=');
+                            }
+                        }
+                    }
+
+                    // Проверка, является ли текущая позиция выше середины ромба
+                    else if (height < Math.ceil((size * 2 + 1) / 2)) {
+
+                        // Проверка, является ли текущая позиция слева от ромба
+                        if (width <= size) {
+                            if (width == size_count) {
+                                mOut.print('/'); // Вставка '/' влевую границу ромба
+                            } else if (width > size_count) {
+                                if (height % 2 == 0) {
+                                    mOut.print('-'); // Вывод '-' для четных позиций высоты слева от ромба
+                                } else {
+                                    mOut.print('=');
+                                }
+                            } else {
+                                mOut.print(' '); // Вставка пробела для остальной левой части ромба
+                            }
+                        }
+
+                        // Проверка, является ли текущая позиция справа от ромба
+                        else if (width > size) {
+                            if (width == size + height_count) {
+                                mOut.print('\\'); // Вставка '\' вправую границу ромба
+                            } else if (width < size + height_count) {
+                                if (height % 2 == 0) {
+                                    mOut.print('-'); // Вывод '-' для четных позиций высоты справа от ромба
+                                } else {
+                                    mOut.print('=');
+                                }
+                            } else {
+                                mOut.print(' '); // Вставка пробела для остальной правой части ромба
+                            }
+                        }
+                    }
+
+                    // Проверка, является ли текущая позиция ниже середины ромба
+                    else if (height > Math.ceil((size * 2 + 1) / 2)) {
+                        // Проверка, является ли текущая позиция слева от ромба
+                        if (width <= size) {
+                            if (width == size_count) {
+                                mOut.print('\\'); // Вставка '\' влевую границу ромба
+                            } else if (width > size_count) {
+                                if (height % 2 == 0) {
+                                    mOut.print('-'); // Вывод '-' для четных позиций высоты слева от ромба
+                                } else {
+                                    mOut.print('=');
+                                }
+                            } else {
+                                mOut.print(' '); // Вставка пробела для остальной левой части ромба
+                            }
+                        }
+
+                        // Проверка, является ли текущая позиция справа от ромба
+                        else if (width > size) {
+                            if (width == size + height_count) {
+                                mOut.print('/'); // Вставка '/' вправую границу ромба
+                            } else if (width < size + height_count) {
+                                if (height % 2 == 0) {
+                                    mOut.print('-'); // Вывод '-' для четных позиций высоты справа от ромба
+                                } else {
+                                    mOut.print('=');
+                                }
+                            } else {
+                                mOut.print(' '); // Вставка пробела для остальной правой части ромба
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Переход на следующую строку после каждой строки ромба
+            mOut.print('\n');
+
+            // Обновление счетчиков высоты и размера для следующей строки
+            if (height < size) {
+                ++height_count;
+                --size_count;
+            } else {
+                --height_count;
+                ++size_count;
+            }
+        }
     }
 
-}
+}    
