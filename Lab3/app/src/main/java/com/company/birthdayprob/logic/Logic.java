@@ -1,6 +1,8 @@
 package com.company.birthdayprob.logic;
 
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 
 import com.company.birthdayprob.ui.OutputInterface;
 
@@ -76,6 +78,31 @@ public class Logic
      */
     public double calculate(int size, int count) {
         // TODO -- add your code here
+
+        int sameBDaysCount = 0;
+
+        for (int i = 0; i < count; i++) {
+            Random random = new Random(i + 1);
+
+
+            Set<Integer> birthdaysSet = new HashSet<>();
+            boolean hasSameBday = false;
+
+            for (int j = 0; j < size; j++) {
+                int bday = random.nextInt(365);
+                if (birthdaysSet.contains(bday)) {
+                    hasSameBday = true;
+                    break;
+                }
+                birthdaysSet.add(bday);
+            }
+
+            if (hasSameBday) {
+                sameBDaysCount++;
+            }
+        }
+
+        return (double) sameBDaysCount * 100 / count;
 
     }
     // TODO - add your code here
